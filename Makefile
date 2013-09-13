@@ -17,13 +17,13 @@ AOBJS = $(AFILES:.asm=.o)
  
 EXEC=cod4x17n
 
-all: $(COBJS) $(AOBJS) $(EXEC)
+all: $(EXEC)
 
 clean:
-	@rm -rf *.o $(EXEC)  
+	@rm -rf $(COBJS) $(AOBJS) $(EXEC)  
 
-$(EXEC):
-	$(CC)  $(COBJS) $(AOBJS) $(LDFLAGS) -o $@
+$(EXEC): $(COBJS) $(AOBJS) 
+	$(CC) $(COBJS) $(AOBJS) -o $@ $(LDFLAGS)  
 	
 $(CFILES):
 	$(CC) $(FLAGS) $(CFLAGS) -c $@
